@@ -2,8 +2,11 @@ package com.ajdi.yassin.newsreader.data.model;
 
 import androidx.room.Entity;
 
+import com.google.android.gms.common.util.Hex;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * @author Yassin Ajdi
@@ -45,6 +48,14 @@ public class Article {
     @SerializedName("source")
     @Expose
     private Source source;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Source getSource() {
         return source;
