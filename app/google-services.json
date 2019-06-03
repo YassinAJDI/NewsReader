@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1057023155237",
+    "firebase_url": "https://newsreader-924f9.firebaseio.com",
+    "project_id": "newsreader-924f9",
+    "storage_bucket": "newsreader-924f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057023155237:android:c5d0d8b63c63e0a5",
+        "android_client_info": {
+          "package_name": "com.ajdi.yassin.newsreader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057023155237-5hr5ei1tbtm3eki4sk9ana3lj7rb3vnf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8kGzwM7cfguwShvyd8afbO4jFwxoQJk8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057023155237-5hr5ei1tbtm3eki4sk9ana3lj7rb3vnf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
