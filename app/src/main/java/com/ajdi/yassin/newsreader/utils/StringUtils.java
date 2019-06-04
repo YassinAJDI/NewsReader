@@ -8,8 +8,7 @@ import org.apache.commons.codec.digest.DigestUtils;
  */
 public class StringUtils {
 
-    public String sha1() {
-        String hash = DigestUtils.sha1Hex("textToHash");
-        return hash;
+    public static String sha1(String text) {
+        return DigestUtils.sha1Hex(text);
     }
 }
