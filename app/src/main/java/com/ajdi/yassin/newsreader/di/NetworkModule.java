@@ -2,6 +2,7 @@ package com.ajdi.yassin.newsreader.di;
 
 import com.ajdi.yassin.newsreader.data.model.Article;
 import com.ajdi.yassin.newsreader.data.remote.ArticleDeserializer;
+import com.ajdi.yassin.newsreader.data.remote.ArticlesService;
 import com.ajdi.yassin.newsreader.data.remote.AuthInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,20 +27,21 @@ public class NetworkModule {
 
     @Singleton
     @Provides
-    Gson provideGson() {
-        return new GsonBuilder()
-                .registerTypeAdapter(Article.class, new ArticleDeserializer())
-                .create();
-    }
-
-    @Singleton
-    @Provides
-    Retrofit provideRetrofit(OkHttpClient client, Gson gson) {
+    ArticlesService provideArticlesService(OkHttpClient client, Gson gson) {
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
-                .build();
+                .build()
+                .create(ArticlesService.class);
+    }
+
+    @Singleton
+    @Provides
+    Gson provideGson() {
+        return new GsonBuilder()
+                .registerTypeAdapter(Article.class, new ArticleDeserializer())
+                .create();
     }
 
     @Singleton
