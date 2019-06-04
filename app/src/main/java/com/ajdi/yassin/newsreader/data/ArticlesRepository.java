@@ -31,7 +31,7 @@ public class ArticlesRepository {
     private ArticlesService articlesService;
 
     @Inject
-    private ArticlesRepository(ArticlesDatabase db, ArticlesService service, AppExecutors executors) {
+    public ArticlesRepository(ArticlesDatabase db, ArticlesService service, AppExecutors executors) {
         database = db;
         articlesService = service;
         mExecutors = executors;
