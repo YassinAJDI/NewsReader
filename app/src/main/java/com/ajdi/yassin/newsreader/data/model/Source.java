@@ -1,20 +1,22 @@
 package com.ajdi.yassin.newsreader.data.model;
 
-import com.google.gson.annotations.Expose;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
  * @author Yassin Ajdi
  * @since 6/3/2019.
  */
+@Entity(tableName = "Source")
 public class Source {
 
+    @PrimaryKey
     @SerializedName("id")
-    @Expose
     private String id;
 
     @SerializedName("name")
-    @Expose
     private String name;
 
     public String getId() {
