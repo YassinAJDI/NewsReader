@@ -16,7 +16,7 @@ import com.ajdi.yassin.newsreader.data.model.Source;
         exportSchema = false)
 public abstract class ArticlesDatabase extends RoomDatabase {
 
-    public static final String DATABASE_NAME = "Movies.db";
+    public static final String DATABASE_NAME = "News.db";
 
     public abstract ArticlesDao articlesDao();
 

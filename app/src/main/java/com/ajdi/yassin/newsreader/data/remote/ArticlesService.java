@@ -1,5 +1,7 @@
 package com.ajdi.yassin.newsreader.data.remote;
 
+import androidx.lifecycle.LiveData;
+
 import com.ajdi.yassin.newsreader.data.model.NewsResponse;
 
 import retrofit2.Call;
@@ -13,7 +15,7 @@ import retrofit2.http.Query;
 public interface ArticlesService {
 
     @GET("/top-headlines")
-    Call<NewsResponse> getTopHeadlines();
+    LiveData<ApiResponse<NewsResponse>> getTopHeadlines();
 
     @GET("/top-headlines?country=us")
     Call<NewsResponse> getNewsForCategory(@Query("category") String category);

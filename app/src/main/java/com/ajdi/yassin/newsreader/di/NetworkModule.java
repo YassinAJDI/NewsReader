@@ -4,6 +4,7 @@ import com.ajdi.yassin.newsreader.data.model.Article;
 import com.ajdi.yassin.newsreader.data.remote.ArticleDeserializer;
 import com.ajdi.yassin.newsreader.data.remote.ArticlesService;
 import com.ajdi.yassin.newsreader.data.remote.AuthInterceptor;
+import com.ajdi.yassin.newsreader.utils.LiveDataCallAdapterFactory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -31,6 +32,7 @@ public class NetworkModule {
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(new LiveDataCallAdapterFactory())
                 .client(client)
                 .build()
                 .create(ArticlesService.class);
