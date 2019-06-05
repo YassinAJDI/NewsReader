@@ -26,6 +26,7 @@ public class DBModule {
         return Room.databaseBuilder(
                 application.getApplicationContext(),
                 ArticlesDatabase.class,
-                DATABASE_NAME).build();
+                DATABASE_NAME)
+                .build();
     }
 }

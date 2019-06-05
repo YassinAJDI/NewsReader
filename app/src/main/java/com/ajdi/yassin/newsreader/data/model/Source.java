@@ -1,5 +1,6 @@
 package com.ajdi.yassin.newsreader.data.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -12,6 +13,7 @@ import com.google.gson.annotations.SerializedName;
 @Entity(tableName = "Source")
 public class Source {
 
+    @NonNull
     @PrimaryKey
     @SerializedName("id")
     private String id;

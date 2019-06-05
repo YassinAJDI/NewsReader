@@ -2,6 +2,8 @@ package com.ajdi.yassin.newsreader.di;
 
 import android.app.Application;
 
+import com.ajdi.yassin.newsreader.NewsApplication;
+
 import javax.inject.Singleton;
 
 import dagger.BindsInstance;
@@ -16,6 +18,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {
         DBModule.class,
         NetworkModule.class,
+        ActivityBuilder.class,
+        ViewModelModule.class,
         AndroidSupportInjectionModule.class})
 public interface AppComponent {
 
@@ -27,5 +31,5 @@ public interface AppComponent {
         AppComponent build();
     }
 
-//    void inject(NewsApplication app);
+    void inject(NewsApplication app);
 }

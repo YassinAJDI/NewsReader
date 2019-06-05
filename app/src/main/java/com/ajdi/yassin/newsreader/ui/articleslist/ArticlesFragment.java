@@ -1,62 +1,76 @@
 package com.ajdi.yassin.newsreader.ui.articleslist;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajdi.yassin.newsreader.databinding.FragmentArticlesBinding;
+import com.ajdi.yassin.newsreader.ui.HomeActivity;
 
+import javax.inject.Inject;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ArticlesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import dagger.android.support.AndroidSupportInjection;
+
 public class ArticlesFragment extends Fragment {
 
-    FragmentArticlesBinding binding;
+    @Inject
+    ViewModelProvider.Factory mViewModelFactory;
+    private ArticlesViewModel mViewModel;
+    private FragmentArticlesBinding mBinding;
 
     public ArticlesFragment() {
         // Required empty public constructor
     }
 
-    public static ArticlesFragment newInstance(String param1, String param2) {
-        ArticlesFragment fragment = new ArticlesFragment();
-        Bundle args = new Bundle();
-
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public void onAttach(Context context) {
+        AndroidSupportInjection.inject(this);
+        super.onAttach(context);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentArticlesBinding.inflate(inflater, container, false);
+        mBinding = FragmentArticlesBinding.inflate(inflater, container, false);
+        mViewModel = HomeActivity.obtainArticleListViewModel(getActivity(), mViewModelFactory);
         setupListAdapter();
-
-        return binding.getRoot();
+        return mBinding.getRoot();
     }
 
     private void setupListAdapter() {
-        RecyclerView recyclerView = binding.recyclerArticleList;
+        RecyclerView recyclerView = mBinding.recyclerArticleList;
         ArticlesAdapter adapter = new ArticlesAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
+        // observe result LiveData and update UI based on the changes
+        mViewModel.getResult().observe(getViewLifecycleOwner(), resource -> {
+            switch (resource.status) {
+                case LOADING: {
+                    break;
+                }
+                case SUCCESS: {
+                    adapter.submitList(resource.data);
+                    break;
+                }
+                case ERROR: {
+                    // TODO: 6/5/2019 show errors message
+                    break;
+                }
+            }
+        });
     }
 }

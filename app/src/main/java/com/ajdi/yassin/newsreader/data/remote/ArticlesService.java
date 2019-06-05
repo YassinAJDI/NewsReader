@@ -14,9 +14,9 @@ import retrofit2.http.Query;
  */
 public interface ArticlesService {
 
-    @GET("/top-headlines")
+    @GET("top-headlines?country=us")
     LiveData<ApiResponse<NewsResponse>> getTopHeadlines();
 
-    @GET("/top-headlines?country=us")
+    @GET("top-headlines?country=us")
     Call<NewsResponse> getNewsForCategory(@Query("category") String category);
 }

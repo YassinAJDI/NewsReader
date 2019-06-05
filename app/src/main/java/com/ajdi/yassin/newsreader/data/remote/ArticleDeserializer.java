@@ -1,7 +1,5 @@
 package com.ajdi.yassin.newsreader.data.remote;
 
-import android.text.TextUtils;
-
 import com.ajdi.yassin.newsreader.data.model.Article;
 import com.ajdi.yassin.newsreader.utils.StringUtils;
 import com.google.gson.JsonDeserializationContext;
@@ -11,6 +9,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
 import java.lang.reflect.Type;
+import java.util.Date;
+
+import timber.log.Timber;
 
 /**
  * @author Yassin Ajdi
@@ -21,22 +22,54 @@ public class ArticleDeserializer implements JsonDeserializer<Article> {
     @Override
     public Article deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException {
-        JsonObject jsonObject = json.getAsJsonObject();
-        JsonObject source = jsonObject.get("source").getAsJsonObject();
-        Article article = new Article();
-        String url = jsonObject.get("url").getAsString();
-        String content = jsonObject.get("content").getAsString();
-        String description = jsonObject.get("description").getAsString();
+        Timber.d("deserialize");
+        String author = null;
+        String title=null;
+        String description=null;
+        String url=null;
+        String urlToImage=null;
+        String publishedAt= new Date().toString();
+        String content;
+        Timber.d(json.toString());
 
-        article.setAuthor(jsonObject.get("author").getAsString());
-        article.setTitle(jsonObject.get("title").getAsString());
-        article.setUrl(url);
-        article.setUrlToImage(jsonObject.get("urlToImage").getAsString());
-        article.setPublishedAt(jsonObject.get("publishedAt").getAsString());
+        JsonObject jsonObject = json.getAsJsonObject();
+//        JsonObject source = jsonObject.get("source").getAsJsonObject();
+
+        if (!jsonObject.get("author").isJsonNull()) {
+            author = jsonObject.get("author").getAsString();
+        }
+        if (!jsonObject.get("title").isJsonNull()) {
+            title = jsonObject.get("title").getAsString();
+        }
+        if (!jsonObject.get("url").isJsonNull()) {
+            url = jsonObject.get("url").getAsString();
+        }
+        if (!jsonObject.get("urlToImage").isJsonNull()) {
+            urlToImage = jsonObject.get("urlToImage").getAsString();
+        }
+        if (!jsonObject.get("publishedAt").isJsonNull()) {
+            publishedAt = jsonObject.get("publishedAt").getAsString();
+        }
+        if (!jsonObject.get("description").isJsonNull()) {
+            description = jsonObject.get("description").getAsString();
+        }
+        if (!jsonObject.get("content").isJsonNull()) {
+            content = jsonObject.get("content").getAsString();
+        } else {
+            content = description;
+        }
+
+        Article article = new Article();
+        article.setAuthor(author);
+        article.setTitle(title);
+        article.setUrlToImage(urlToImage);
+        article.setPublishedAt(publishedAt);
         article.setDescription(description);
-        article.setContent(TextUtils.isEmpty(content) ? description : content);
-        article.setSourceId(source.get("id").getAsString());
+        article.setContent(content);
+        article.setUrl(url);
         article.setId(StringUtils.sha1(url));
+        Timber.d(article.getId());
+//        article.setSourceId(source.get("id").getAsString());
 
         return article;
     }

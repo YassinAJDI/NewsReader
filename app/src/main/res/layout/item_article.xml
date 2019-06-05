@@ -36,7 +36,6 @@
                 style="@style/CardArticleItemText.Headline"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{note.title}"
                 app:layout_constraintEnd_toStartOf="@+id/image_note"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image_user_icon"

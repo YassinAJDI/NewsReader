@@ -1,38 +1,36 @@
 package com.ajdi.yassin.newsreader.data.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
-
-import static androidx.room.ForeignKey.CASCADE;
 
 /**
  * @author Yassin Ajdi
  * @since 6/3/2019.
  */
-@Entity(tableName = "article",
-        foreignKeys = @ForeignKey(
-                entity = Source.class,
-                parentColumns = "id",
-                childColumns = "source_id",
-                onDelete = CASCADE,
-                onUpdate = CASCADE
-        ),
-        indices = {
-                @Index(value = {"source_id"})
-        }
+@Entity(tableName = "article"
+//        foreignKeys = @ForeignKey(
+//                entity = Source.class,
+//                parentColumns = "id",
+//                childColumns = "source_id",
+//                onDelete = CASCADE,
+//                onUpdate = CASCADE
+//        ),
+//        indices = {
+//                @Index(value = {"source_id"})
+//        }
 )
 public class Article {
 
+    @NonNull
     @PrimaryKey
     private String id;
 
-    @ColumnInfo(name = "source_id")
-    private String sourceId;
+//    @ColumnInfo(name = "source_id")
+//    private String sourceId;
 
     @SerializedName("author")
     private String author;
@@ -121,11 +119,11 @@ public class Article {
         this.content = content;
     }
 
-    public String getSourceId() {
-        return sourceId;
-    }
-
-    public void setSourceId(String sourceId) {
-        this.sourceId = sourceId;
-    }
+//    public String getSourceId() {
+//        return sourceId;
+//    }
+//
+//    public void setSourceId(String sourceId) {
+//        this.sourceId = sourceId;
+//    }
 }
