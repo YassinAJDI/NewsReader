@@ -27,11 +27,11 @@ public class ArticlesPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return ArticlesFragment.newInstance();
+                return ArticlesFragment.newInstance(ArticlesFilterType.TOP_HEADLINES);
             case 1:
-                return ArticlesFragment.newInstance();
+                return ArticlesFragment.newInstance(ArticlesFilterType.SPORTS);
             case 2:
-                return ArticlesFragment.newInstance();
+                return ArticlesFragment.newInstance(ArticlesFilterType.TECHNOLOGY);
             default:
                 return null;
         }

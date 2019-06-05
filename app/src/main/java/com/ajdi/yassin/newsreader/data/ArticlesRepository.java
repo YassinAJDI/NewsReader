@@ -11,6 +11,7 @@ import com.ajdi.yassin.newsreader.data.model.NewsResponse;
 import com.ajdi.yassin.newsreader.data.model.Resource;
 import com.ajdi.yassin.newsreader.data.remote.ApiResponse;
 import com.ajdi.yassin.newsreader.data.remote.ArticlesService;
+import com.ajdi.yassin.newsreader.ui.pager.ArticlesFilterType;
 import com.ajdi.yassin.newsreader.utils.AppExecutors;
 
 import java.util.List;
@@ -99,6 +100,43 @@ public class ArticlesRepository {
             protected LiveData<ApiResponse<NewsResponse>> createCall() {
                 Timber.d("Downloading articles from network");
                 return articlesService.getTopHeadlines();
+            }
+
+            @NonNull
+            @Override
+            protected void onFetchFailed() {
+
+            }
+        }.getAsLiveData();
+    }
+
+    public LiveData<Resource<List<Feed>>> loadFeedsFiltredBy(ArticlesFilterType filterType) {
+        return new NetworkBoundResource<List<Feed>, NewsResponse>(mExecutors) {
+            private final String category = filterType.toString().toLowerCase();
+
+            @Override
+            protected void saveCallResult(@NonNull NewsResponse item) {
+                database.articlesDao().insertArticles(item.getArticles());
+                Timber.d("Article list inserted into database: %s", item.getArticles().size());
+            }
+
+            @Override
+            protected boolean shouldFetch(@Nullable List<Feed> data) {
+                return data == null || data.isEmpty();
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<List<Feed>> loadFromDb() {
+                Timber.d("Loading article list from database for: %s", category);
+                return database.articlesDao().getArticlesForCategory(category);
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<NewsResponse>> createCall() {
+                Timber.d("Downloading articles from network");
+                return articlesService.getNewsForCategory(category);
             }
 
             @NonNull

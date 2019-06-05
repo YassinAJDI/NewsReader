@@ -31,4 +31,12 @@ public interface ArticlesDao {
             + "FROM article LEFT JOIN source ON source_id = source.id"
     )
     LiveData<List<Feed>> getAllArticlesWithSource();
+
+    /**
+     * Query that returns a list of feeds for certain category.
+     */
+    @Query("SELECT article.id, title, published_at, url_to_image, article.description, source_name, source_url "
+            + "FROM article INNER JOIN source ON source_id = source.id WHERE category =:category"
+    )
+    LiveData<List<Feed>> getArticlesForCategory(String category);
 }

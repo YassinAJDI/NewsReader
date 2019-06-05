@@ -21,6 +21,9 @@ public interface ArticlesService {
     @GET("top-headlines?country=us")
     LiveData<ApiResponse<NewsResponse>> getTopHeadlines();
 
-    @GET("top-headlines?country=us")
-    Call<NewsResponse> getNewsForCategory(@Query("category") String category);
+//    @GET("everything?domains=wsj.com,nytimes.com&pageSize=100")
+//    LiveData<ApiResponse<NewsResponse>> getSportNews();
+
+    @GET("top-headlines?country=us&pageSize=100")
+    LiveData<ApiResponse<NewsResponse>> getNewsForCategory(@Query("category") String category);
 }

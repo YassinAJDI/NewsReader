@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajdi.yassin.newsreader.databinding.FragmentArticlesBinding;
 import com.ajdi.yassin.newsreader.ui.HomeActivity;
+import com.ajdi.yassin.newsreader.ui.pager.ArticlesFilterType;
 
 import javax.inject.Inject;
 
@@ -21,20 +22,22 @@ import dagger.android.support.AndroidSupportInjection;
 
 public class ArticlesFragment extends Fragment {
 
+    private static final String ARG_FILTER_TYPE = "ARG_FILTER_TYPE";
     @Inject
     ViewModelProvider.Factory mViewModelFactory;
     private ArticlesViewModel mViewModel;
     private FragmentArticlesBinding mBinding;
+    private ArticlesFilterType mFilterType;
 
     public ArticlesFragment() {
         // Required empty public constructor
     }
 
-    public static ArticlesFragment newInstance() {
-//        Bundle arguments = new Bundle();
-//        arguments.putParcelable(ARG_ARTICLE_DATA, article);
+    public static ArticlesFragment newInstance(ArticlesFilterType filterType) {
+        Bundle arguments = new Bundle();
+        arguments.putSerializable(ARG_FILTER_TYPE, filterType);
         ArticlesFragment fragment = new ArticlesFragment();
-//        fragment.setArguments(arguments);
+        fragment.setArguments(arguments);
         return fragment;
     }
 
@@ -47,6 +50,7 @@ public class ArticlesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mFilterType = (ArticlesFilterType) getArguments().getSerializable(ARG_FILTER_TYPE);
     }
 
     @Override
@@ -80,7 +84,7 @@ public class ArticlesFragment extends Fragment {
 //                }
 //            }
 //        });
-        mViewModel.getResultFeeds().observe(getViewLifecycleOwner(), resource -> {
+        mViewModel.getResultFeeds(mFilterType).observe(getViewLifecycleOwner(), resource -> {
             switch (resource.status) {
                 case LOADING: {
                     break;

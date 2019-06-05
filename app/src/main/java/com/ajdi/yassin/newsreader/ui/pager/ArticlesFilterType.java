@@ -8,7 +8,7 @@ public enum ArticlesFilterType {
 
     TOP_HEADLINES,
 
-    SPORT,
+    SPORTS,
 
     TECHNOLOGY,
 
