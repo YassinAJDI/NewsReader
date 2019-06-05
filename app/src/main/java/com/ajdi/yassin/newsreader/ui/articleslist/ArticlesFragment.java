@@ -30,6 +30,14 @@ public class ArticlesFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static ArticlesFragment newInstance() {
+//        Bundle arguments = new Bundle();
+//        arguments.putParcelable(ARG_ARTICLE_DATA, article);
+        ArticlesFragment fragment = new ArticlesFragment();
+//        fragment.setArguments(arguments);
+        return fragment;
+    }
+
     @Override
     public void onAttach(Context context) {
         AndroidSupportInjection.inject(this);

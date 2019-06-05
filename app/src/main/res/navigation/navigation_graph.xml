@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/articles_dest">
+    app:startDestination="@id/articles_pager_dest">
 
     <fragment
         android:id="@+id/articles_dest"
@@ -15,4 +15,9 @@
         android:name="com.ajdi.yassin.newsreader.ui.favorites.FavoritesFragment"
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/articles_pager_dest"
+        android:name="com.ajdi.yassin.newsreader.ui.pager.ArticlesPagerFragment"
+        android:label="fragment_articles_pager"
+        tools:layout="@layout/fragment_articles_pager" />
 </navigation>
