@@ -4,6 +4,7 @@ import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
 import com.ajdi.yassin.newsreader.data.local.dao.ArticlesDao;
+import com.ajdi.yassin.newsreader.data.local.dao.SourcesDao;
 import com.ajdi.yassin.newsreader.data.model.Article;
 import com.ajdi.yassin.newsreader.data.model.Source;
 
@@ -19,5 +20,6 @@ public abstract class ArticlesDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "News.db";
 
     public abstract ArticlesDao articlesDao();
+    public abstract SourcesDao sourcesDao();
 
 }

@@ -11,8 +11,6 @@ import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
 import java.util.Date;
 
-import timber.log.Timber;
-
 /**
  * @author Yassin Ajdi
  * @since 6/3/2019.
@@ -22,15 +20,13 @@ public class ArticleDeserializer implements JsonDeserializer<Article> {
     @Override
     public Article deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException {
-        Timber.d("deserialize");
         String author = null;
-        String title=null;
-        String description=null;
-        String url=null;
-        String urlToImage=null;
-        String publishedAt= new Date().toString();
+        String title = null;
+        String description = null;
+        String url = null;
+        String urlToImage = null;
+        String publishedAt = new Date().toString();
         String content;
-        Timber.d(json.toString());
 
         JsonObject jsonObject = json.getAsJsonObject();
 //        JsonObject source = jsonObject.get("source").getAsJsonObject();
@@ -68,7 +64,6 @@ public class ArticleDeserializer implements JsonDeserializer<Article> {
         article.setContent(content);
         article.setUrl(url);
         article.setId(StringUtils.sha1(url));
-        Timber.d(article.getId());
 //        article.setSourceId(source.get("id").getAsString());
 
         return article;
