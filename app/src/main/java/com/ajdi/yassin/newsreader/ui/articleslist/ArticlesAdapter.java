@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajdi.yassin.newsreader.data.model.Article;
+import com.ajdi.yassin.newsreader.data.model.Feed;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public class ArticlesAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
 
-    private List<Article> mArticleList;
+    private List<Feed> mArticleList;
 
     @NonNull
     @Override
@@ -33,7 +34,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
         return mArticleList != null ? mArticleList.size() : 0;
     }
 
-    public void submitList(List<Article> articles) {
+    public void submitList(List<Feed> articles) {
         mArticleList = articles;
         notifyDataSetChanged();
     }

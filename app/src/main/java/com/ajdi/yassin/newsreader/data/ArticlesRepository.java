@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import com.ajdi.yassin.newsreader.data.local.ArticlesDatabase;
 import com.ajdi.yassin.newsreader.data.model.Article;
+import com.ajdi.yassin.newsreader.data.model.Feed;
 import com.ajdi.yassin.newsreader.data.model.NewsResponse;
 import com.ajdi.yassin.newsreader.data.model.Resource;
 import com.ajdi.yassin.newsreader.data.remote.ApiResponse;
@@ -73,4 +74,38 @@ public class ArticlesRepository {
         }.getAsLiveData();
     }
 
+    public LiveData<Resource<List<Feed>>> loadFeeds() {
+        return new NetworkBoundResource<List<Feed>, NewsResponse>(mExecutors) {
+            @Override
+            protected void saveCallResult(@NonNull NewsResponse item) {
+                database.articlesDao().insertArticles(item.getArticles());
+                Timber.d("Article list inserted into database");
+            }
+
+            @Override
+            protected boolean shouldFetch(@Nullable List<Feed> data) {
+                return data == null || data.isEmpty();
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<List<Feed>> loadFromDb() {
+                Timber.d("Loading article list from database");
+                return database.articlesDao().getAllArticlesWithSource();
+            }
+
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<NewsResponse>> createCall() {
+                Timber.d("Downloading articles from network");
+                return articlesService.getTopHeadlines();
+            }
+
+            @NonNull
+            @Override
+            protected void onFetchFailed() {
+
+            }
+        }.getAsLiveData();
+    }
 }

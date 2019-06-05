@@ -65,7 +65,22 @@ public class ArticlesFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         // observe result LiveData and update UI based on the changes
-        mViewModel.getResult().observe(getViewLifecycleOwner(), resource -> {
+//        mViewModel.getResult().observe(getViewLifecycleOwner(), resource -> {
+//            switch (resource.status) {
+//                case LOADING: {
+//                    break;
+//                }
+//                case SUCCESS: {
+//                    adapter.submitList(resource.data);
+//                    break;
+//                }
+//                case ERROR: {
+//                    // TODO: 6/5/2019 show errors message
+//                    break;
+//                }
+//            }
+//        });
+        mViewModel.getResultFeeds().observe(getViewLifecycleOwner(), resource -> {
             switch (resource.status) {
                 case LOADING: {
                     break;

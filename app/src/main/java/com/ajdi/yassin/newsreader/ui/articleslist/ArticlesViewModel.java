@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.ajdi.yassin.newsreader.data.ArticlesRepository;
 import com.ajdi.yassin.newsreader.data.model.Article;
+import com.ajdi.yassin.newsreader.data.model.Feed;
 import com.ajdi.yassin.newsreader.data.model.Resource;
 
 import java.util.List;
@@ -20,14 +21,20 @@ import timber.log.Timber;
 public class ArticlesViewModel extends ViewModel {
 
     private LiveData<Resource<List<Article>>> result;
+    private LiveData<Resource<List<Feed>>> resultFeeds;
 
     @Inject
     public ArticlesViewModel(ArticlesRepository repository) {
         Timber.d("Initializing ArticlesViewModel");
-        result = repository.loadTopHeadlines();
+//        result = repository.loadTopHeadlines();
+        resultFeeds = repository.loadFeeds();
     }
 
     public LiveData<Resource<List<Article>>> getResult() {
         return result;
+    }
+
+    public LiveData<Resource<List<Feed>>> getResultFeeds() {
+        return resultFeeds;
     }
 }

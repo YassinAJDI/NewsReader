@@ -1,6 +1,7 @@
 package com.ajdi.yassin.newsreader.data.model;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -18,12 +19,14 @@ public class Source {
     @SerializedName("id")
     private String id;
 
+    @ColumnInfo(name = "source_name")
     @SerializedName("name")
     private String name;
 
     @SerializedName("description")
     private String description;
 
+    @ColumnInfo(name = "source_url")
     @SerializedName("url")
     private String url;
 

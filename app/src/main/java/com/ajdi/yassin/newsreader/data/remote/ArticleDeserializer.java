@@ -27,10 +27,9 @@ public class ArticleDeserializer implements JsonDeserializer<Article> {
         String urlToImage = null;
         String publishedAt = new Date().toString();
         String content;
+        String sourceId = null;
 
         JsonObject jsonObject = json.getAsJsonObject();
-//        JsonObject source = jsonObject.get("source").getAsJsonObject();
-
         if (!jsonObject.get("author").isJsonNull()) {
             author = jsonObject.get("author").getAsString();
         }
@@ -54,6 +53,10 @@ public class ArticleDeserializer implements JsonDeserializer<Article> {
         } else {
             content = description;
         }
+        JsonObject source = jsonObject.get("source").getAsJsonObject();
+        if (!source.get("id").isJsonNull()) {
+            sourceId = source.get("id").getAsString();
+        }
 
         Article article = new Article();
         article.setAuthor(author);
@@ -64,7 +67,7 @@ public class ArticleDeserializer implements JsonDeserializer<Article> {
         article.setContent(content);
         article.setUrl(url);
         article.setId(StringUtils.sha1(url));
-//        article.setSourceId(source.get("id").getAsString());
+        article.setSourceId(sourceId);
 
         return article;
     }
