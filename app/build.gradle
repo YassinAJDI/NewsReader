@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -20,6 +21,10 @@ android {
 
     buildTypes.each {
         it.buildConfigField 'String', 'NEWS_API_KEY', NEWS_API_KEY
+    }
+
+    dataBinding {
+        enabled = true
     }
 
     compileOptions {
