@@ -23,6 +23,9 @@ public class Feed {
     @ColumnInfo(name = "description")
     public String description;
 
+    @ColumnInfo(name = "is_favorite")
+    public boolean favorite;
+
     @ColumnInfo(name = "source_name")
     public String sourceName;
 

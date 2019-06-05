@@ -62,6 +62,17 @@ public class Article {
     @SerializedName("content")
     private String content;
 
+    @ColumnInfo(name = "is_favorite")
+    private boolean favorite;
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
     public String getId() {
         return id;
     }

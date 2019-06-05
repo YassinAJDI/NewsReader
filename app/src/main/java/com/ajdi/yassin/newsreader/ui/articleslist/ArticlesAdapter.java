@@ -5,7 +5,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ajdi.yassin.newsreader.data.model.Article;
 import com.ajdi.yassin.newsreader.data.model.Feed;
 
 import java.util.List;
@@ -17,11 +16,16 @@ import java.util.List;
 public class ArticlesAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
 
     private List<Feed> mArticleList;
+    private ArticlesViewModel mViewModel;
+
+    public ArticlesAdapter(ArticlesViewModel viewModel) {
+        mViewModel = viewModel;
+    }
 
     @NonNull
     @Override
     public ArticleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return ArticleViewHolder.create(parent);
+        return ArticleViewHolder.create(parent, mViewModel);
     }
 
     @Override

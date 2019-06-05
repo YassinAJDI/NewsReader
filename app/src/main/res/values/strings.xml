@@ -9,4 +9,7 @@
         <item>Sport</item>
         <item>Technology</item>
     </string-array>
+
+    <string name="added_to_favorites">Feed added to your favorites successfully</string>
+    <string name="removed_from_favorites">Feed removed from your favorites successfully</string>
 </resources>

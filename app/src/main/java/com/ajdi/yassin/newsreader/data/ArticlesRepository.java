@@ -146,4 +146,18 @@ public class ArticlesRepository {
             }
         }.getAsLiveData();
     }
+
+    public void favoriteArticle(Feed feed) {
+        mExecutors.diskIO().execute(() -> {
+            Timber.d("Adding article to favorites");
+            database.articlesDao().favoriteArticle(feed.id);
+        });
+    }
+
+    public void unfavoriteArticle(Feed feed) {
+        mExecutors.diskIO().execute(() -> {
+            Timber.d("Removing article from favorites");
+            database.articlesDao().unFavoriteArticle(feed.id);
+        });
+    }
 }

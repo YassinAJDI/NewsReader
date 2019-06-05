@@ -16,33 +16,31 @@ import com.bumptech.glide.request.RequestOptions;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import timber.log.Timber;
-
 /**
  * @author Yassin Ajdi
  * @since 6/4/2019.
  */
 public class ArticleViewHolder extends RecyclerView.ViewHolder {
-
+    public final int ALPHA_VALUE = 138;
     private final ItemArticleBinding binding;
+    private ArticlesViewModel viewModel;
 
-    public ArticleViewHolder(@NonNull ItemArticleBinding binding) {
+    public ArticleViewHolder(@NonNull ItemArticleBinding binding, ArticlesViewModel viewModel) {
         super(binding.getRoot());
         this.binding = binding;
+        this.viewModel = viewModel;
     }
 
-    public static ArticleViewHolder create(ViewGroup parent) {
+    public static ArticleViewHolder create(ViewGroup parent, ArticlesViewModel viewModel) {
         // Inflate
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         // Create the binding
         ItemArticleBinding binding =
                 ItemArticleBinding.inflate(layoutInflater, parent, false);
-        return new ArticleViewHolder(binding);
+        return new ArticleViewHolder(binding, viewModel);
     }
 
     public void bindTo(final Feed article) {
-        final int adapterPosition = getAdapterPosition();
-        Timber.d("binding position: " + adapterPosition);
         // article image
         GlideApp.with(binding.getRoot())
                 .load(article.urlToImage)
@@ -67,6 +65,17 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
         binding.textPublisherName.setText(article.sourceName);
         binding.textTitle.setText(article.title);
         binding.textTime.setText(article.publishedAt);
+        // card add to favorites button
+        binding.cardActionStarButton.setImageResource(
+                article.favorite ? R.drawable.ic_star_black_24dp : R.drawable.ic_star_border_black_24dp);
+        binding.cardActionStarButton.setImageAlpha(ALPHA_VALUE);
+        binding.cardActionStarButton.setOnClickListener(view -> {
+            if (!article.favorite) {
+                viewModel.onFavoriteClicked(article);
+            } else {
+                viewModel.onUnFavoriteClicked(article);
+            }
+        });
         binding.executePendingBindings();
     }
 }

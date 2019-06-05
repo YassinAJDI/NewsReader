@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ajdi.yassin.newsreader.databinding.FragmentArticlesBinding;
 import com.ajdi.yassin.newsreader.ui.HomeActivity;
 import com.ajdi.yassin.newsreader.ui.pager.ArticlesFilterType;
+import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
@@ -59,12 +60,22 @@ public class ArticlesFragment extends Fragment {
         mBinding = FragmentArticlesBinding.inflate(inflater, container, false);
         mViewModel = HomeActivity.obtainArticleListViewModel(getActivity(), mViewModelFactory);
         setupListAdapter();
+        setupSnackbar();
         return mBinding.getRoot();
+    }
+
+    private void setupSnackbar() {
+        mViewModel.getSnackbarMessageEvent().observe(getViewLifecycleOwner(), messageEvent -> {
+            Integer message = messageEvent.getContentIfNotHandled();
+            if (message != null) {
+                Snackbar.make(mBinding.getRoot(), message, Snackbar.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setupListAdapter() {
         RecyclerView recyclerView = mBinding.recyclerArticleList;
-        ArticlesAdapter adapter = new ArticlesAdapter();
+        ArticlesAdapter adapter = new ArticlesAdapter(mViewModel);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 

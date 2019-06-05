@@ -27,7 +27,8 @@ public interface ArticlesDao {
     /**
      * Query that returns a list of feeds.
      */
-    @Query("SELECT article.id, title, published_at, url_to_image, article.description, source_name, source_url "
+    @Query("SELECT article.id, title, published_at, url_to_image, is_favorite, article.description, " +
+            "source_name, source_url "
             + "FROM article LEFT JOIN source ON source_id = source.id"
     )
     LiveData<List<Feed>> getAllArticlesWithSource();
@@ -35,8 +36,21 @@ public interface ArticlesDao {
     /**
      * Query that returns a list of feeds for certain category.
      */
-    @Query("SELECT article.id, title, published_at, url_to_image, article.description, source_name, source_url "
+    @Query("SELECT article.id, title, published_at, url_to_image, is_favorite, article.description, " +
+            "source_name, source_url "
             + "FROM article INNER JOIN source ON source_id = source.id WHERE category =:category"
     )
     LiveData<List<Feed>> getArticlesForCategory(String category);
+
+    /**
+     * Favorite article.
+     */
+    @Query("UPDATE article SET is_favorite = 1 WHERE id = :articleId")
+    int favoriteArticle(String articleId);
+
+    /**
+     * Unfavorite article.
+     */
+    @Query("UPDATE article SET is_favorite = 0 WHERE id = :articleId")
+    int unFavoriteArticle(String articleId);
 }
