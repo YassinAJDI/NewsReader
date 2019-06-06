@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/favorites_dest"
         android:name="com.ajdi.yassin.newsreader.ui.favorites.FavoritesFragment"
-        android:label="fragment_favorites"
+        android:label="@string/label_favorites"
         tools:layout="@layout/fragment_favorites">
 
         <action
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/articles_pager_dest"
         android:name="com.ajdi.yassin.newsreader.ui.pager.ArticlesPagerFragment"
-        android:label="fragment_articles_pager"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_articles_pager">
         <action
             android:id="@+id/action_articles_pager_dest_to_article_details_dest"
@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/article_details_dest"
         android:name="com.ajdi.yassin.newsreader.ui.details.ArticleDetailsFragment"
-        android:label="Article Details"
+        android:label="@string/label_article_details"
         tools:layout="@layout/fragment_article_details" >
         <argument
             android:name="article_id"

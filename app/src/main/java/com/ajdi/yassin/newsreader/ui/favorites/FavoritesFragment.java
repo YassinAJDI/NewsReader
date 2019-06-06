@@ -5,11 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ajdi.yassin.newsreader.R;
 import com.ajdi.yassin.newsreader.databinding.FragmentFavoritesBinding;
 import com.ajdi.yassin.newsreader.ui.HomeActivity;
 import com.ajdi.yassin.newsreader.ui.articleslist.ArticlesAdapter;
@@ -39,9 +45,18 @@ public class FavoritesFragment extends Fragment {
                              Bundle savedInstanceState) {
         mBinding = FragmentFavoritesBinding.inflate(inflater, container, false);
         mViewModel = HomeActivity.obtainArticleListViewModel(getActivity(), mViewModelFactory);
+        setupToolbar();
         setupListAdapter();
         setupSnackbar();
         return mBinding.getRoot();
+    }
+
+    private void setupToolbar() {
+        AppBarConfiguration appBarConfiguration =
+                new AppBarConfiguration.Builder(R.id.articles_pager_dest, R.id.favorites_dest).build();
+        Toolbar toolbar = mBinding.toolbar;
+        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
     }
 
     private void setupSnackbar() {

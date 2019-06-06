@@ -8,7 +8,12 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 
 import com.ajdi.yassin.newsreader.R;
@@ -40,5 +45,12 @@ public class ArticlesPagerFragment extends Fragment {
         pager.setAdapter(pagerAdapter);
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(pager);
+
+        // setup toolbar
+        AppBarConfiguration appBarConfiguration =
+                new AppBarConfiguration.Builder(R.id.articles_pager_dest, R.id.favorites_dest).build();
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
     }
 }
