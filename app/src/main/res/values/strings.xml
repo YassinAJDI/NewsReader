@@ -27,5 +27,6 @@
     <string name="share_icon">Share icon</string>
     <string name="favorite_icon">Favorite icon</string>
     <string name="no_favorites">Empty. you haven\'t added any article to your favorites yet!</string>
+    <string name="action_retry">Retry</string>
 
 </resources>

@@ -96,16 +96,22 @@ public class ArticlesFragment extends Fragment {
         mViewModel.getResultFeeds(mFilterType).observe(getViewLifecycleOwner(), resource -> {
             switch (resource.status) {
                 case LOADING: {
+                    mBinding.partialArticleList.refreshLayout.setVisibility(View.VISIBLE);
+                    mBinding.networkState.errorLayout.setVisibility(View.GONE);
                     mSwipeRefreshLayout.setRefreshing(true);
                     break;
                 }
                 case SUCCESS: {
                     mSwipeRefreshLayout.setRefreshing(false);
+                    mBinding.networkState.errorLayout.setVisibility(View.GONE);
                     adapter.submitList(resource.data);
                     break;
                 }
                 case ERROR: {
                     mSwipeRefreshLayout.setRefreshing(false);
+                    mBinding.partialArticleList.refreshLayout.setVisibility(View.GONE);
+                    mBinding.networkState.errorLayout.setVisibility(View.VISIBLE);
+                    mBinding.networkState.errorMsg.setText(resource.message);
                     break;
                 }
             }

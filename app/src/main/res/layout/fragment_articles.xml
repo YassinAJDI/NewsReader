@@ -10,6 +10,10 @@
         <include
             android:id="@+id/partial_article_list"
             layout="@layout/partial_articles_list" />
+
+        <include
+            android:id="@+id/network_state"
+            layout="@layout/network_state" />
     </FrameLayout>
 
 </layout>
