@@ -15,13 +15,30 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:navGraph="@navigation/navigation_graph" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_gravity="bottom"
-        android:background="@color/colorPrimary"
-        app:elevation="4dp"
-        app:menu="@menu/bottom_navigation" />
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation_container"
+        android:layout_gravity="bottom">
 
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="bottom"
+            android:background="#212121"
+            android:theme="@style/ThemeOverlay.MaterialComponents.Dark"
+            app:elevation="4dp"
+            app:itemIconTint="@color/bottom_nav_item_colors"
+            app:itemTextColor="@color/bottom_nav_item_colors"
+            app:menu="@menu/bottom_navigation" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_marginBottom="?attr/actionBarSize"
+            android:contentDescription="@string/bottom_navigation_border"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/bottom_nav_border" />
+    </FrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

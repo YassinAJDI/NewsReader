@@ -12,6 +12,8 @@ import com.ajdi.yassin.newsreader.data.model.Feed;
 import com.ajdi.yassin.newsreader.databinding.ItemArticleBinding;
 import com.ajdi.yassin.newsreader.utils.GlideApp;
 import com.ajdi.yassin.newsreader.utils.UiUtils;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.net.MalformedURLException;
@@ -45,6 +47,8 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
         // feed image
         GlideApp.with(binding.getRoot())
                 .load(feed.urlToImage)
+                .apply(new RequestOptions().transforms(new CenterCrop(),
+                        new RoundedCorners((int) UiUtils.dipToPixels(itemView.getContext(), 8))))
                 .placeholder(R.color.md_grey_200)
                 .into(binding.imageNote);
         // source image

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 
 import androidx.core.app.ShareCompat;
 
@@ -32,5 +34,11 @@ public class UiUtils {
         if (shareIntent.resolveActivity(context.getPackageManager()) != null) {
             context.startActivity(shareIntent);
         }
+    }
+
+    // convert dip to float
+    public static float dipToPixels(Context context, float dipValue){
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,  dipValue, metrics);
     }
 }

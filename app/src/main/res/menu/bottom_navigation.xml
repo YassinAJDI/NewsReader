@@ -4,10 +4,10 @@
     <item
         android:id="@+id/articles_pager_dest"
         android:icon="@drawable/ic_whatshot_black_24dp"
-        android:title="Discover" />
+        android:title="@string/discover" />
 
     <item
         android:id="@+id/favorites_dest"
-        android:icon="@drawable/ic_star_border_black_24dp"
-        android:title="Favorites" />
+        android:icon="@drawable/ic_star_black_24dp"
+        android:title="@string/favorites" />
 </menu>

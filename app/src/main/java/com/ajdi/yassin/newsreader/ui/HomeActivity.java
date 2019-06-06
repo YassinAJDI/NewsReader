@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.ajdi.yassin.newsreader.R;
@@ -40,7 +39,6 @@ public class HomeActivity extends AppCompatActivity implements HasSupportFragmen
         mViewModel = HomeActivity.obtainArticleListViewModel(this, mViewModelFactory);
         setContentView(R.layout.activity_home);
         setUpBottomNav();
-        setupToolbar();
         // observe open article details event
         mViewModel.getOpenFeedDetailEvent().observe(this, idEvent -> {
             String articleId = idEvent.getContentIfNotHandled();
@@ -56,23 +54,17 @@ public class HomeActivity extends AppCompatActivity implements HasSupportFragmen
         });
     }
 
-    private void setupToolbar() {
-        AppBarConfiguration appBarConfiguration =
-                new AppBarConfiguration.Builder(R.id.articles_pager_dest, R.id.favorites_dest).build();
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-////        setSupportActionBar(toolbar);
-//        NavigationUI.setupWithNavController(toolbar, navController);
-    }
-
     private void setUpBottomNav() {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         NavigationUI.setupWithNavController(bottomNav, navController);
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             if (destination.getId() == R.id.article_details_dest) {
-                bottomNav.setVisibility(View.GONE);
+//                bottomNav.setVisibility(View.GONE);
+                findViewById(R.id.bottom_navigation_container).setVisibility(View.GONE);
             } else {
-                bottomNav.setVisibility(View.VISIBLE);
+//                bottomNav.setVisibility(View.VISIBLE);
+                findViewById(R.id.bottom_navigation_container).setVisibility(View.VISIBLE);
             }
         });
     }
