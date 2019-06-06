@@ -7,10 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.ajdi.yassin.newsreader.R;
 import com.ajdi.yassin.newsreader.data.model.Feed;
@@ -58,6 +63,7 @@ public class ArticleDetailsFragment extends Fragment {
         mBinding = FragmentArticleDetailsBinding.inflate(inflater, container, false);
         mViewModel = ViewModelProviders.of(this, mViewModelFactory).get(ArticleDetailsViewModel.class);
         mViewModel.init(articleId);
+        setupToolbar();
         // observe feed details
         mViewModel.getFeedLiveData().observe(getViewLifecycleOwner(), new Observer<Feed>() {
             @Override
@@ -68,6 +74,14 @@ public class ArticleDetailsFragment extends Fragment {
             }
         });
         return mBinding.getRoot();
+    }
+
+    private void setupToolbar() {
+        AppBarConfiguration appBarConfiguration =
+                new AppBarConfiguration.Builder(R.id.articles_pager_dest, R.id.favorites_dest).build();
+        Toolbar toolbar = mBinding.toolbar;
+        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
     }
 
     private void populateUi(Feed feed) {

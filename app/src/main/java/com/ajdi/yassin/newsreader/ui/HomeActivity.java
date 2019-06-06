@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.ajdi.yassin.newsreader.R;
@@ -39,6 +40,7 @@ public class HomeActivity extends AppCompatActivity implements HasSupportFragmen
         mViewModel = HomeActivity.obtainArticleListViewModel(this, mViewModelFactory);
         setContentView(R.layout.activity_home);
         setUpBottomNav();
+        setupToolbar();
         // observe open article details event
         mViewModel.getOpenFeedDetailEvent().observe(this, idEvent -> {
             String articleId = idEvent.getContentIfNotHandled();
@@ -48,6 +50,14 @@ public class HomeActivity extends AppCompatActivity implements HasSupportFragmen
                 navController.navigate(R.id.action_articles_pager_dest_to_article_details_dest, bundle);
             }
         });
+    }
+
+    private void setupToolbar() {
+        AppBarConfiguration appBarConfiguration =
+                new AppBarConfiguration.Builder(R.id.articles_pager_dest, R.id.favorites_dest).build();
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+////        setSupportActionBar(toolbar);
+//        NavigationUI.setupWithNavController(toolbar, navController);
     }
 
     private void setUpBottomNav() {

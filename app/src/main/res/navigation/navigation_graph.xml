@@ -24,7 +24,7 @@
     <fragment
         android:id="@+id/article_details_dest"
         android:name="com.ajdi.yassin.newsreader.ui.details.ArticleDetailsFragment"
-        android:label="fragment_article_details"
+        android:label="Article Details"
         tools:layout="@layout/fragment_article_details" >
         <argument
             android:name="article_id"
