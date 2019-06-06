@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.favorites.FavoritesFragment"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:context=".ui.favorites.FavoritesFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
@@ -23,6 +24,19 @@
 
         <include
             android:id="@+id/partial_article_list"
-            layout="@layout/partial_articles_list" />
+            layout="@layout/partial_articles_list"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <TextView
+            android:id="@+id/empty_state"
+            style="@style/TextAppearance.AppCompat.Display1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:text="@string/no_favorites"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
+            android:visibility="gone" />
     </LinearLayout>
 </layout>

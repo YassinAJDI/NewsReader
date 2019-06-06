@@ -24,8 +24,8 @@
     <string name="discover">Discover</string>
     <string name="favorites">Favorites</string>
     <string name="bottom_navigation_border">Bottom navigation border</string>
-    <string name="publisher_icon">Publisher icon</string>
     <string name="share_icon">Share icon</string>
     <string name="favorite_icon">Favorite icon</string>
+    <string name="no_favorites">Empty. you haven\'t added any article to your favorites yet!</string>
 
 </resources>

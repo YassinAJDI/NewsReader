@@ -79,6 +79,8 @@ public class FavoritesFragment extends Fragment {
                 adapter.submitList(feeds);
             } else {
                 // TODO: 6/5/2019 display empty state
+                mBinding.partialArticleList.refreshLayout.setVisibility(View.GONE);
+                mBinding.emptyState.setVisibility(View.VISIBLE);
                 Timber.d("Favorites is empty");
             }
         });

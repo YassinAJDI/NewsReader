@@ -7,11 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.ajdi.yassin.newsreader.R;
 import com.ajdi.yassin.newsreader.databinding.FragmentArticlesBinding;
 import com.ajdi.yassin.newsreader.ui.HomeActivity;
 import com.ajdi.yassin.newsreader.ui.pager.ArticlesFilterType;
@@ -29,6 +32,7 @@ public class ArticlesFragment extends Fragment {
     private ArticlesViewModel mViewModel;
     private FragmentArticlesBinding mBinding;
     private ArticlesFilterType mFilterType;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     public ArticlesFragment() {
         // Required empty public constructor
@@ -61,7 +65,17 @@ public class ArticlesFragment extends Fragment {
         mViewModel = HomeActivity.obtainArticleListViewModel(getActivity(), mViewModelFactory);
         setupListAdapter();
         setupSnackbar();
+        setupSwipeRefresh();
         return mBinding.getRoot();
+    }
+
+    private void setupSwipeRefresh() {
+        mSwipeRefreshLayout = mBinding.partialArticleList.refreshLayout;
+        mSwipeRefreshLayout.setColorSchemeColors(
+                ContextCompat.getColor(getActivity(), R.color.colorPrimary),
+                ContextCompat.getColor(getActivity(), R.color.colorAccent),
+                ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark)
+        );
     }
 
     private void setupSnackbar() {
@@ -78,33 +92,24 @@ public class ArticlesFragment extends Fragment {
         ArticlesAdapter adapter = new ArticlesAdapter(mViewModel);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
-
         // observe result LiveData and update UI based on the changes
-//        mViewModel.getResult().observe(getViewLifecycleOwner(), resource -> {
-//            switch (resource.status) {
-//                case LOADING: {
-//                    break;
-//                }
-//                case SUCCESS: {
-//                    adapter.submitList(resource.data);
-//                    break;
-//                }
-//                case ERROR: {
-//                    // TODO: 6/5/2019 show errors message
-//                    break;
-//                }
-//            }
-//        });
         mViewModel.getResultFeeds(mFilterType).observe(getViewLifecycleOwner(), resource -> {
             switch (resource.status) {
                 case LOADING: {
+                    mSwipeRefreshLayout.setRefreshing(true);
                     break;
                 }
                 case SUCCESS: {
-                    adapter.submitList(resource.data);
+                    mSwipeRefreshLayout.setRefreshing(false);
+                    if (resource.data.isEmpty()) {
+                        // TODO: 6/6/2019 show empty state
+                    } else {
+                        adapter.submitList(resource.data);
+                    }
                     break;
                 }
                 case ERROR: {
+                    mSwipeRefreshLayout.setRefreshing(false);
                     // TODO: 6/5/2019 show errors message
                     break;
                 }
