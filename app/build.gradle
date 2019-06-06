@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
 android {
+    signingConfigs {
+        config {
+            storeFile file("$rootDir/upload-keystore.jks")
+            storePassword 'store12345'
+            keyPassword 'key12345'
+            keyAlias = 'news'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.ajdi.yassin.newsreader"
@@ -17,6 +25,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 
