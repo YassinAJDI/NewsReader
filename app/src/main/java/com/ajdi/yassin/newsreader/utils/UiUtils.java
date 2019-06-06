@@ -22,7 +22,6 @@ public class UiUtils {
         Intent shareIntent = ShareCompat.IntentBuilder.from((Activity) context)
                 .setType("text/plain")
                 .setSubject(feed.title)
-                // TODO: change link to article link
                 .setText(feed.title + "\n" + feed.content)
                 .createChooserIntent();
 
