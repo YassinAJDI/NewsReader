@@ -59,14 +59,14 @@
 
                     <TextView
                         android:id="@+id/text_publisher_name"
-                        style="@style/ArticleDetailsPublisherName"
+                        style="@style/CardArticleItemText.SourceName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:text="Hespress" />
 
                     <TextView
                         android:id="@+id/text_time"
-                        style="@style/ArticleDetailsTime"
+                        style="@style/CardArticleItemText.Time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:text="10 mins ago" />
@@ -100,10 +100,12 @@
 
                 <TextView
                     android:id="@+id/article_content"
+                    style="@style/ArticleDetailsBody"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:fontFamily="@font/raleway"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/image_article_image" />

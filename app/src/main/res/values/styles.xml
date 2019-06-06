@@ -38,9 +38,9 @@
     <style name="CardArticleItemText" parent="MetaDataText" />
 
     <style name="CardArticleItemText.Headline" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="android:textAppearance">@android:style/TextAppearance</item>
         <item name="android:paddingLeft">@dimen/card_inner_padding</item>
         <item name="android:paddingRight">@dimen/card_inner_padding</item>
+        <item name="fontFamily">@font/raleway_semibold</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:maxLines">2</item>
     </style>
@@ -50,13 +50,13 @@
     <style name="CardArticleItemText.SourceName" parent="TextAppearance.MaterialComponents.Overline">
         <item name="android:ellipsize">end</item>
         <item name="android:singleLine">true</item>
-        <item name="android:textSize">10sp</item>
+        <item name="fontFamily">@font/raleway_semibold</item>
     </style>
 
     <style name="CardArticleItemText.Time" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:ellipsize">end</item>
+        <item name="fontFamily">@font/raleway_medium</item>
         <item name="android:singleLine">true</item>
-        <item name="android:textSize">10sp</item>
     </style>
 
     <style name="CardArticleActionIcon">
@@ -76,14 +76,13 @@
         <item name="android:layout_height">@dimen/article_publisher_icon_size</item>
     </style>
 
-    <style name="ArticleDetailsPublisherName" parent="MetaDataText.SourceName" />
+    <style name="ArticleDetailsTitle" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:lineSpacingExtra">5dp</item>
+        <item name="fontFamily">@font/raleway_semibold</item>
+    </style>
 
-    <style name="ArticleDetailsTime" parent="MetaDataText.PublishTime" />
-
-    <style name="ArticleDetailsTitle">
-        <item name="fontWeight">500</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:textColor">#ff000000</item>
+    <style name="ArticleDetailsBody" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/raleway_medium</item>
         <item name="android:lineSpacingExtra">5dp</item>
     </style>
 
