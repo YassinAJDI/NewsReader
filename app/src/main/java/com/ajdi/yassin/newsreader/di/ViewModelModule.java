@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.ajdi.yassin.newsreader.di.scope.ViewModelKey;
 import com.ajdi.yassin.newsreader.ui.articleslist.ArticlesViewModel;
+import com.ajdi.yassin.newsreader.ui.details.ArticleDetailsViewModel;
 import com.ajdi.yassin.newsreader.utils.ViewModelFactory;
 
 import dagger.Binds;
@@ -25,5 +26,10 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ArticlesViewModel.class)
     abstract ViewModel bindArticlesViewModel(ArticlesViewModel articlesViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ArticleDetailsViewModel.class)
+    abstract ViewModel bindArticleDetailsViewModel(ArticleDetailsViewModel articleDetailsViewModel);
 
 }

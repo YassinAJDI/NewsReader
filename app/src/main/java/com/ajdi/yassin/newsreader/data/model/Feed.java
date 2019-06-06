@@ -20,8 +20,8 @@ public class Feed {
     @ColumnInfo(name = "url_to_image")
     public String urlToImage;
 
-    @ColumnInfo(name = "description")
-    public String description;
+    @ColumnInfo(name = "content")
+    public String content;
 
     @ColumnInfo(name = "is_favorite")
     public boolean favorite;

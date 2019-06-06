@@ -31,6 +31,7 @@ public class ArticlesViewModel extends ViewModel implements ArticleItemUserActio
     private LiveData<Resource<List<Feed>>> resultTechnology;
 
     private MutableLiveData<Event<Integer>> mSnackbarMessageEvent = new MutableLiveData<>();
+    private MutableLiveData<Event<String>> mOpenFeedDetailEvent = new MutableLiveData<>();
 
     @Inject
     public ArticlesViewModel(ArticlesRepository repository) {
@@ -57,6 +58,17 @@ public class ArticlesViewModel extends ViewModel implements ArticleItemUserActio
             default:
                 throw new IllegalArgumentException("unknown filterType");
         }
+    }
+
+    /**
+     * Called by {@link ArticleViewHolder}.
+     */
+    public void openFeedDetailEvent(String articleId) {
+        mOpenFeedDetailEvent.setValue(new Event<>(articleId));
+    }
+
+    public LiveData<Event<String>> getOpenFeedDetailEvent() {
+        return mOpenFeedDetailEvent;
     }
 
     public LiveData<List<Feed>> getFavoritesListLiveData() {

@@ -27,17 +27,31 @@ public class HomeActivity extends AppCompatActivity implements HasSupportFragmen
 
     @Inject
     DispatchingAndroidInjector<Fragment> dispatchingAndroidInjector;
+    @Inject
+    ViewModelProvider.Factory mViewModelFactory;
+    private ArticlesViewModel mViewModel;
+    private NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
+        mViewModel = HomeActivity.obtainArticleListViewModel(this, mViewModelFactory);
         setContentView(R.layout.activity_home);
         setUpBottomNav();
+        // observe open article details event
+        mViewModel.getOpenFeedDetailEvent().observe(this, idEvent -> {
+            String articleId = idEvent.getContentIfNotHandled();
+            if (articleId != null) {
+                Bundle bundle = new Bundle();
+                bundle.putString("article_id", articleId);
+                navController.navigate(R.id.action_articles_pager_dest_to_article_details_dest, bundle);
+            }
+        });
     }
 
     private void setUpBottomNav() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         NavigationUI.setupWithNavController(bottomNav, navController);
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {

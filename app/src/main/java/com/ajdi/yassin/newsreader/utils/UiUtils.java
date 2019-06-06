@@ -21,7 +21,7 @@ public class UiUtils {
                 .setType("text/plain")
                 .setSubject(feed.title)
                 // TODO: change link to article link
-                .setText(feed.title + "\n" + feed.description)
+                .setText(feed.title + "\n" + feed.content)
                 .createChooserIntent();
 
         int flags = Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_MULTIPLE_TASK;

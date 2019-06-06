@@ -82,6 +82,8 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
         binding.cardActionShareButton.setImageAlpha(ALPHA_VALUE);
         binding.cardActionShareButton.setOnClickListener(view ->
                 UiUtils.fireShareIntent(binding.getRoot().getContext(), feed));
+        // card item click event
+        itemView.setOnClickListener(v -> viewModel.openFeedDetailEvent(feed.id));
         binding.executePendingBindings();
     }
 }

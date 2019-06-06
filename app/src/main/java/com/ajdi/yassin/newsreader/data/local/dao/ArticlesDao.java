@@ -21,13 +21,22 @@ public interface ArticlesDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertArticles(List<Article> articleList);
 
+    /**
+     * Query that returns a single feed.
+     */
+    @Query("SELECT article.id, title, published_at, url_to_image, is_favorite, content, " +
+            "source_name, source_url "
+            + "FROM article LEFT JOIN source ON source_id = source.id WHERE article.id = :articleId"
+    )
+    LiveData<Feed> getArticleDetails(String articleId);
+
     @Query("SELECT * FROM article")
     LiveData<List<Article>> getAllArticles();
 
     /**
      * Query that returns a list of feeds.
      */
-    @Query("SELECT article.id, title, published_at, url_to_image, is_favorite, article.description, " +
+    @Query("SELECT article.id, title, published_at, url_to_image, is_favorite, content, " +
             "source_name, source_url "
             + "FROM article LEFT JOIN source ON source_id = source.id"
     )
@@ -36,7 +45,7 @@ public interface ArticlesDao {
     /**
      * Query that returns a list of feeds for certain category.
      */
-    @Query("SELECT article.id, title, published_at, url_to_image, is_favorite, article.description, " +
+    @Query("SELECT article.id, title, published_at, url_to_image, is_favorite, content, " +
             "source_name, source_url "
             + "FROM article INNER JOIN source ON source_id = source.id WHERE category =:category"
     )
@@ -45,7 +54,7 @@ public interface ArticlesDao {
     /**
      * Query that returns a list of feeds for certain category.
      */
-    @Query("SELECT article.id, title, published_at, url_to_image, is_favorite, article.description, " +
+    @Query("SELECT article.id, title, published_at, url_to_image, is_favorite, content, " +
             "source_name, source_url "
             + "FROM article LEFT JOIN source ON source_id = source.id WHERE is_favorite = 1"
     )

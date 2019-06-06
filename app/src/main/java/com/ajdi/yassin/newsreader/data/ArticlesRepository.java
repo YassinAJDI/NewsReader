@@ -147,6 +147,10 @@ public class ArticlesRepository {
         }.getAsLiveData();
     }
 
+    public LiveData<Feed> getArticleDetails(String articleId) {
+        return database.articlesDao().getArticleDetails(articleId);
+    }
+
     public LiveData<List<Feed>> getAllFavoriteArticles() {
         return database.articlesDao().getAllFavoriteArticles();
     }
