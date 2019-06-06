@@ -29,9 +29,11 @@ public class ArticlesPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return ArticlesFragment.newInstance(ArticlesFilterType.TOP_HEADLINES);
             case 1:
-                return ArticlesFragment.newInstance(ArticlesFilterType.SPORTS);
-            case 2:
                 return ArticlesFragment.newInstance(ArticlesFilterType.TECHNOLOGY);
+            case 2:
+                return ArticlesFragment.newInstance(ArticlesFilterType.ENTERTAINMENT);
+            case 3:
+                return ArticlesFragment.newInstance(ArticlesFilterType.HEALTH);
             default:
                 return null;
         }
@@ -41,20 +43,11 @@ public class ArticlesPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         String[] titles = mContext.getResources().getStringArray(R.array.pager_titles);
-        switch (position) {
-            case 0:
-                return titles[0];
-            case 1:
-                return titles[1];
-            case 2:
-                return titles[2];
-            default:
-                return null;
-        }
+        return titles[position];
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 }

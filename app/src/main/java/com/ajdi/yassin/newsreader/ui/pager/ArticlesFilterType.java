@@ -12,5 +12,9 @@ public enum ArticlesFilterType {
 
     TECHNOLOGY,
 
+    ENTERTAINMENT,
+
+    HEALTH,
+
     SCIENCE
 }

@@ -45,6 +45,7 @@ public class ArticlesPagerFragment extends Fragment {
         pager.setAdapter(pagerAdapter);
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(pager);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
         // setup toolbar
         AppBarConfiguration appBarConfiguration =

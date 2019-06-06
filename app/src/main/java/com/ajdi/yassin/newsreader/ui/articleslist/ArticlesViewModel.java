@@ -27,8 +27,9 @@ public class ArticlesViewModel extends ViewModel implements ArticleItemUserActio
     //    private LiveData<Resource<List<Article>>> result;
     private ArticlesRepository mRepository;
     private LiveData<Resource<List<Feed>>> resultFeeds;
-    private LiveData<Resource<List<Feed>>> resultSport;
     private LiveData<Resource<List<Feed>>> resultTechnology;
+    private LiveData<Resource<List<Feed>>> resultEntertainment;
+    private LiveData<Resource<List<Feed>>> resultHealth;
 
     private MutableLiveData<Event<Integer>> mSnackbarMessageEvent = new MutableLiveData<>();
     private MutableLiveData<Event<String>> mOpenFeedDetailEvent = new MutableLiveData<>();
@@ -37,10 +38,10 @@ public class ArticlesViewModel extends ViewModel implements ArticleItemUserActio
     public ArticlesViewModel(ArticlesRepository repository) {
         Timber.d("Initializing ArticlesViewModel");
         mRepository = repository;
-//        result = repository.loadTopHeadlines();
         resultFeeds = mRepository.loadFeeds();
-        resultSport = mRepository.loadFeedsFiltredBy(ArticlesFilterType.SPORTS);
         resultTechnology = mRepository.loadFeedsFiltredBy(ArticlesFilterType.TECHNOLOGY);
+        resultEntertainment = mRepository.loadFeedsFiltredBy(ArticlesFilterType.ENTERTAINMENT);
+        resultHealth = mRepository.loadFeedsFiltredBy(ArticlesFilterType.HEALTH);
     }
 
 //    public LiveData<Resource<List<Article>>> getResult() {
@@ -51,10 +52,12 @@ public class ArticlesViewModel extends ViewModel implements ArticleItemUserActio
         switch (filterType) {
             case TOP_HEADLINES:
                 return resultFeeds;
-            case SPORTS:
-                return resultSport;
             case TECHNOLOGY:
                 return resultTechnology;
+            case ENTERTAINMENT:
+                return resultEntertainment;
+            case HEALTH:
+                return resultHealth;
             default:
                 throw new IllegalArgumentException("unknown filterType");
         }
