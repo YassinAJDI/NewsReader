@@ -43,6 +43,15 @@ public interface ArticlesDao {
     LiveData<List<Feed>> getArticlesForCategory(String category);
 
     /**
+     * Query that returns a list of feeds for certain category.
+     */
+    @Query("SELECT article.id, title, published_at, url_to_image, is_favorite, article.description, " +
+            "source_name, source_url "
+            + "FROM article LEFT JOIN source ON source_id = source.id WHERE is_favorite = 1"
+    )
+    LiveData<List<Feed>> getAllFavoriteArticles();
+
+    /**
      * Favorite article.
      */
     @Query("UPDATE article SET is_favorite = 1 WHERE id = :articleId")

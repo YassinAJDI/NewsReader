@@ -74,7 +74,7 @@ public class ArticlesFragment extends Fragment {
     }
 
     private void setupListAdapter() {
-        RecyclerView recyclerView = mBinding.recyclerArticleList;
+        RecyclerView recyclerView = mBinding.partialArticleList.recyclerArticleList;
         ArticlesAdapter adapter = new ArticlesAdapter(mViewModel);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);

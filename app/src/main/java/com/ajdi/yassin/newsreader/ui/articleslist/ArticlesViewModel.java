@@ -59,6 +59,11 @@ public class ArticlesViewModel extends ViewModel implements ArticleItemUserActio
         }
     }
 
+    public LiveData<List<Feed>> getFavoritesListLiveData() {
+        // load by lazy
+        return mRepository.getAllFavoriteArticles();
+    }
+
     @Override
     public void onFavoriteClicked(@NonNull Feed feed) {
         mRepository.favoriteArticle(feed);

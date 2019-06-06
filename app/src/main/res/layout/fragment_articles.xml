@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.articleslist.ArticlesFragment">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refresh_layout"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_article_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:paddingBottom="4dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        <include
+            android:id="@+id/partial_article_list"
+            layout="@layout/partial_articles_list" />
+    </FrameLayout>
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

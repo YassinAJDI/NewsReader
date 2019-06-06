@@ -147,6 +147,10 @@ public class ArticlesRepository {
         }.getAsLiveData();
     }
 
+    public LiveData<List<Feed>> getAllFavoriteArticles() {
+        return database.articlesDao().getAllFavoriteArticles();
+    }
+
     public void favoriteArticle(Feed feed) {
         mExecutors.diskIO().execute(() -> {
             Timber.d("Adding article to favorites");
