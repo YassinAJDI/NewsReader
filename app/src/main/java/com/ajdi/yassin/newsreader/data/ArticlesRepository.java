@@ -5,7 +5,6 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
 import com.ajdi.yassin.newsreader.data.local.ArticlesDatabase;
-import com.ajdi.yassin.newsreader.data.model.Article;
 import com.ajdi.yassin.newsreader.data.model.Feed;
 import com.ajdi.yassin.newsreader.data.model.NewsResponse;
 import com.ajdi.yassin.newsreader.data.model.Resource;
@@ -39,41 +38,41 @@ public class ArticlesRepository {
         mExecutors = executors;
     }
 
-    public LiveData<Resource<List<Article>>> loadTopHeadlines() {
-        return new NetworkBoundResource<List<Article>, NewsResponse>(mExecutors) {
-            @Override
-            protected void saveCallResult(@NonNull NewsResponse item) {
-                database.articlesDao().insertArticles(item.getArticles());
-                Timber.d("Article list inserted into database");
-            }
-
-            @Override
-            protected boolean shouldFetch(@Nullable List<Article> data) {
-                return data == null || data.isEmpty(); // only fetch fresh data if it doesn't exist in database
-            }
-
-            @NonNull
-            @Override
-            protected LiveData<List<Article>> loadFromDb() {
-                Timber.d("Loading article list from database");
-                return database.articlesDao().getAllArticles();
-            }
-
-            @NonNull
-            @Override
-            protected LiveData<ApiResponse<NewsResponse>> createCall() {
-                Timber.d("Downloading articles from network");
-                return articlesService.getTopHeadlines();
-            }
-
-            @NonNull
-            @Override
-            protected void onFetchFailed() {
-                // ignored
-                Timber.d("Fetch failed!!");
-            }
-        }.getAsLiveData();
-    }
+//    public LiveData<Resource<List<Article>>> loadTopHeadlines() {
+//        return new NetworkBoundResource<List<Article>, NewsResponse>(mExecutors) {
+//            @Override
+//            protected void saveCallResult(@NonNull NewsResponse item) {
+//                database.articlesDao().insertArticles(item.getArticles());
+//                Timber.d("Article list inserted into database");
+//            }
+//
+//            @Override
+//            protected boolean shouldFetch(@Nullable List<Article> data) {
+//                return data == null || data.isEmpty(); // only fetch fresh data if it doesn't exist in database
+//            }
+//
+//            @NonNull
+//            @Override
+//            protected LiveData<List<Article>> loadFromDb() {
+//                Timber.d("Loading article list from database");
+//                return database.articlesDao().getAllArticles();
+//            }
+//
+//            @NonNull
+//            @Override
+//            protected LiveData<ApiResponse<NewsResponse>> createCall() {
+//                Timber.d("Downloading articles from network");
+//                return articlesService.getTopHeadlines();
+//            }
+//
+//            @NonNull
+//            @Override
+//            protected void onFetchFailed() {
+//                // ignored
+//                Timber.d("Fetch failed!!");
+//            }
+//        }.getAsLiveData();
+//    }
 
     public LiveData<Resource<List<Feed>>> loadFeeds() {
         return new NetworkBoundResource<List<Feed>, NewsResponse>(mExecutors) {

@@ -31,7 +31,7 @@ public interface ArticlesDao {
     LiveData<Feed> getArticleDetails(String articleId);
 
     @Query("SELECT * FROM article")
-    LiveData<List<Article>> getAllArticles();
+    List<Article> getAllArticles();
 
     /**
      * Query that returns a list of feeds.
