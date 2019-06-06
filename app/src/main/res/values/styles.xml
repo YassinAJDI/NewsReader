@@ -64,7 +64,6 @@
         <item name="android:textSize">10sp</item>
     </style>
 
-
     <style name="CardArticleActionIcon">
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_width">@dimen/min_touch_size</item>
@@ -74,6 +73,24 @@
         <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
+    </style>
+
+    <!--Article Details Styles -->
+    <style name="ArticleDetailsPublisherImage" parent="SourceIcon">
+        <item name="android:layout_width">@dimen/article_publisher_icon_size</item>
+        <item name="android:layout_height">@dimen/article_publisher_icon_size</item>
+    </style>
+
+    <style name="ArticleDetailsPublisherName" parent="MetaDataText.SourceName" />
+
+    <style name="ArticleDetailsTime" parent="MetaDataText.PublishTime" />
+
+    <style name="ArticleDetailsTitle">
+        <!--<item name="android:fontFamily">@font/roboto</item>-->
+        <item name="fontWeight">500</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ff000000</item>
+        <item name="android:lineSpacingExtra">5dp</item>
     </style>
 
 </resources>

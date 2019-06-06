@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">NewsReader</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string-array name="pager_titles">
         <item>Top headlines</item>
         <item>Sport</item>
@@ -12,4 +9,11 @@
 
     <string name="added_to_favorites">Feed added to your favorites successfully</string>
     <string name="removed_from_favorites">Feed removed from your favorites successfully</string>
+
+    <!--Accessibility-->
+    <string name="publisher_icon">Publisher icon</string>
+    <string name="card_image">Feed image</string>
+    <string name="article_image">Article image</string>
+    <string name="drawer_logo">Application logo</string>
+
 </resources>

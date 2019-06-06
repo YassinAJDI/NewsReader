@@ -1,6 +1,7 @@
 package com.ajdi.yassin.newsreader.ui;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -39,6 +40,13 @@ public class HomeActivity extends AppCompatActivity implements HasSupportFragmen
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         NavigationUI.setupWithNavController(bottomNav, navController);
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            if (destination.getId() == R.id.article_details_dest) {
+                bottomNav.setVisibility(View.GONE);
+            } else {
+                bottomNav.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     public static ArticlesViewModel obtainArticleListViewModel(FragmentActivity activity,
