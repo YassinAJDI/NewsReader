@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="?android:textColorPrimary"
+    <item android:color="@color/md_white_1000"
         android:alpha="?android:attr/disabledAlpha"
         android:state_enabled="false" />
 
-    <item android:color="?android:textColorPrimary"
+    <item android:color="@color/md_white_1000"
         android:state_checked="true" />
 
     <item android:color="?android:textColorSecondary" />

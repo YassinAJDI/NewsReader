@@ -23,22 +23,23 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
+            style="@style/Theme.MaterialComponents"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="bottom"
-            android:background="#212121"
-            android:theme="@style/ThemeOverlay.MaterialComponents.Dark"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:elevation="4dp"
             app:itemIconTint="@color/bottom_nav_item_colors"
             app:itemTextColor="@color/bottom_nav_item_colors"
+            android:background="@color/colorPrimary"
             app:menu="@menu/bottom_navigation" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="6dp"
-            android:layout_marginBottom="?attr/actionBarSize"
-            android:contentDescription="@string/bottom_navigation_border"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/bottom_nav_border" />
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="6dp"-->
+            <!--android:layout_marginBottom="?attr/actionBarSize"-->
+            <!--android:contentDescription="@string/bottom_navigation_border"-->
+            <!--android:scaleType="fitXY"-->
+            <!--app:srcCompat="@drawable/bottom_nav_border" />-->
     </FrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
