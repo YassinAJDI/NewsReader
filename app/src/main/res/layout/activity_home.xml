@@ -33,13 +33,5 @@
             app:itemTextColor="@color/bottom_nav_item_colors"
             android:background="@color/colorPrimary"
             app:menu="@menu/bottom_navigation" />
-
-        <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="6dp"-->
-            <!--android:layout_marginBottom="?attr/actionBarSize"-->
-            <!--android:contentDescription="@string/bottom_navigation_border"-->
-            <!--android:scaleType="fitXY"-->
-            <!--app:srcCompat="@drawable/bottom_nav_border" />-->
     </FrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
