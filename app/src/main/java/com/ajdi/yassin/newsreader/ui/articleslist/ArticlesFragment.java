@@ -101,16 +101,11 @@ public class ArticlesFragment extends Fragment {
                 }
                 case SUCCESS: {
                     mSwipeRefreshLayout.setRefreshing(false);
-                    if (resource.data.isEmpty()) {
-                        // TODO: 6/6/2019 show empty state
-                    } else {
-                        adapter.submitList(resource.data);
-                    }
+                    adapter.submitList(resource.data);
                     break;
                 }
                 case ERROR: {
                     mSwipeRefreshLayout.setRefreshing(false);
-                    // TODO: 6/5/2019 show errors message
                     break;
                 }
             }

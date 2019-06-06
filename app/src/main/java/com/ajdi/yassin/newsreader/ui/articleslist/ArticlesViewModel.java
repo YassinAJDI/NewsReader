@@ -24,7 +24,6 @@ import timber.log.Timber;
  */
 public class ArticlesViewModel extends ViewModel implements ArticleItemUserActionsListener {
 
-    //    private LiveData<Resource<List<Article>>> result;
     private ArticlesRepository mRepository;
     private LiveData<Resource<List<Feed>>> resultFeeds;
     private LiveData<Resource<List<Feed>>> resultTechnology;
@@ -43,10 +42,6 @@ public class ArticlesViewModel extends ViewModel implements ArticleItemUserActio
         resultEntertainment = mRepository.loadFeedsFiltredBy(ArticlesFilterType.ENTERTAINMENT);
         resultHealth = mRepository.loadFeedsFiltredBy(ArticlesFilterType.HEALTH);
     }
-
-//    public LiveData<Resource<List<Article>>> getResult() {
-//        return result;
-//    }
 
     public LiveData<Resource<List<Feed>>> getResultFeeds(ArticlesFilterType filterType) {
         switch (filterType) {

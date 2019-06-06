@@ -14,6 +14,7 @@ import com.ajdi.yassin.newsreader.data.remote.ArticlesService;
 import com.ajdi.yassin.newsreader.utils.AppExecutors;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Singleton;
@@ -42,22 +43,19 @@ public class DBModule {
                     public void onCreate(@NonNull final SupportSQLiteDatabase db) {
                         super.onCreate(db);
                         // insert the data on the IO Thread
-                        appExecutors.diskIO().execute(new Runnable() {
-                            @Override
-                            public void run() {
-                                Timber.d("populate database");
-                                try {
-                                    Response<SourceResponse> response = service.getAllSources().execute();
-                                    if (response.isSuccessful()) {
-                                        List<Source> sourceList = response.body().getSources();
-                                        Timber.d("Number of sources: " + sourceList.size());
-                                        Room.databaseBuilder(application.getApplicationContext(),
-                                                ArticlesDatabase.class, DATABASE_NAME).build()
-                                                .sourcesDao().insertSources(sourceList);
-                                    }
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                        appExecutors.diskIO().execute(() -> {
+                            Timber.d("populate database");
+                            try {
+                                Response<SourceResponse> response = service.getAllSources().execute();
+                                if (response.isSuccessful()) {
+                                    SourceResponse data = response.body();
+                                    List<Source> sourceList = data != null ? data.getSources() : Collections.emptyList();
+                                    Room.databaseBuilder(application.getApplicationContext(),
+                                            ArticlesDatabase.class, DATABASE_NAME).build()
+                                            .sourcesDao().insertSources(sourceList);
                                 }
+                            } catch (IOException e) {
+                                e.printStackTrace();
                             }
                         });
                     }

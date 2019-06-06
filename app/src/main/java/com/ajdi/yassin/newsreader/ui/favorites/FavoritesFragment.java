@@ -24,8 +24,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
-import timber.log.Timber;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -78,10 +76,8 @@ public class FavoritesFragment extends Fragment {
             if (!feeds.isEmpty()) {
                 adapter.submitList(feeds);
             } else {
-                // TODO: 6/5/2019 display empty state
                 mBinding.partialArticleList.refreshLayout.setVisibility(View.GONE);
                 mBinding.emptyState.setVisibility(View.VISIBLE);
-                Timber.d("Favorites is empty");
             }
         });
     }
