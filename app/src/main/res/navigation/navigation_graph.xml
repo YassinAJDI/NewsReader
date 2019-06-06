@@ -11,6 +11,9 @@
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites">
 
+        <action
+            android:id="@+id/action_favorites_dest_to_article_details_dest"
+            app:destination="@id/article_details_dest" />
     </fragment>
     <fragment
         android:id="@+id/articles_pager_dest"

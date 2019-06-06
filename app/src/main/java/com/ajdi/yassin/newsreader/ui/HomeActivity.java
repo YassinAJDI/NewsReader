@@ -47,7 +47,11 @@ public class HomeActivity extends AppCompatActivity implements HasSupportFragmen
             if (articleId != null) {
                 Bundle bundle = new Bundle();
                 bundle.putString("article_id", articleId);
-                navController.navigate(R.id.action_articles_pager_dest_to_article_details_dest, bundle);
+                if (navController.getCurrentDestination().getId() == R.id.articles_pager_dest) {
+                    navController.navigate(R.id.action_articles_pager_dest_to_article_details_dest, bundle);
+                } else {
+                    navController.navigate(R.id.action_favorites_dest_to_article_details_dest, bundle);
+                }
             }
         });
     }
