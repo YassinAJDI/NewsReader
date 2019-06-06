@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.widget.RemoteViews;
 
 import com.ajdi.yassin.newsreader.R;
+import com.ajdi.yassin.newsreader.ui.HomeActivity;
+import com.ajdi.yassin.newsreader.ui.details.ArticleDetailsFragment;
 
 /**
  * Implementation of App Widget functionality.
@@ -25,7 +27,10 @@ public class NewsWidgetProvider extends AppWidgetProvider {
             int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
                     AppWidgetManager.INVALID_APPWIDGET_ID);
             String articleId = intent.getStringExtra(EXTRA_ITEM);
-//            Toast.makeText(context, "Touched view " + viewIndex, Toast.LENGTH_SHORT).show();
+            Intent articleIntent = new Intent(context, HomeActivity.class);
+            intent.putExtra(ArticleDetailsFragment.EXTRA_ARTICLE, articleId);
+            articleIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(articleIntent);
         }
         super.onReceive(context, intent);
     }

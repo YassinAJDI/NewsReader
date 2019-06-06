@@ -1,6 +1,7 @@
 package com.ajdi.yassin.newsreader.di;
 
 import com.ajdi.yassin.newsreader.di.scope.ActivityScoped;
+import com.ajdi.yassin.newsreader.sync.FeedsFirebaseJobService;
 import com.ajdi.yassin.newsreader.ui.HomeActivity;
 
 import dagger.Module;
@@ -16,5 +17,8 @@ public abstract class ActivityBuilder {
     @ActivityScoped
     @ContributesAndroidInjector(modules = HomeActivityModule.class)
     abstract HomeActivity bindHomeActivity();
+
+    @ContributesAndroidInjector
+    abstract FeedsFirebaseJobService bindFeedsFirebaseJobService();
 
 }

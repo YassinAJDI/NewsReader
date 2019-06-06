@@ -36,6 +36,7 @@ import dagger.android.support.AndroidSupportInjection;
  */
 public class ArticleDetailsFragment extends Fragment {
 
+    public static final String EXTRA_ARTICLE = "article_id";
     @Inject
     ViewModelProvider.Factory mViewModelFactory;
     private FragmentArticleDetailsBinding mBinding;

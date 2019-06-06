@@ -18,7 +18,10 @@ public interface ArticlesService {
     @GET("sources")
     Call<SourceResponse> getAllSources();
 
-    @GET("top-headlines?country=us")
+    @GET("top-headlines?country=us&Size=100")
+    Call<NewsResponse> fetchTopHeadlines();
+
+    @GET("top-headlines?country=us&Size=100")
     LiveData<ApiResponse<NewsResponse>> getTopHeadlines();
 
 //    @GET("everything?domains=wsj.com,nytimes.com&pageSize=100")
